@@ -1,0 +1,142 @@
+* {
+    font-family: monospace;
+}
+
+.info_usuario{
+    display: flex;
+    flex-direction: column;
+}
+
+header img {
+    height: 3rem;
+}
+
+footer {
+    height: 50px;
+}
+
+.carrito_grande{
+    font-size: 30px;
+}
+
+.card-detail img {
+    background-size: contain;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: auto;
+    max-height: 550px;
+}
+
+.card-title{
+    font-size: 18px;
+}
+
+.contenedor_btn {
+    position: relative;
+
+}
+
+.contenedor_btn .btn_contenido {
+    height: 50px;
+    width: 50px;
+    font-size: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 3px;
+    padding: 5px;
+    justify-content: center;
+    /* From https://css.glass */
+
+
+}
+
+.contenedor_btn .contenedor_btn_izquierda {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    z-index: 10;
+    margin: 10px;
+    top: 0;
+    left: 0;
+    background: var(--mi-background);
+}
+
+.contenedor_btn .contenedor_btn_derecha {
+    top: 0;
+    right: 0;
+    position: fixed;
+    margin: 10px;
+    background: var(--mi-background);
+}
+
+
+/* GENERAL */
+.mi-background {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(19.3px);
+    -webkit-backdrop-filter: blur(19.3px);
+    border: 1px solid rgba(255, 255, 255, 0.73);
+
+}
+
+.mi-background-verde {
+    background: rgba(80, 200, 120, 0.84);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.3px);
+    -webkit-backdrop-filter: blur(6.3px);
+    border: 1px solid rgba(80, 200, 120, 0.73);
+}
+
+.mi-background-azul {
+    background: rgba(134, 238, 222, 0.89);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
+    border: 1px solid rgba(134, 238, 222, 0.73);
+}
+
+.hover-zoom {
+    transition: transform .1s;
+}
+
+.hover-zoom:hover {
+    transform: scale(.9);
+}
+
+.hover-zoom-plus {
+    transition: transform .1s;
+    cursor: pointer;
+}
+
+.hover-zoom-plus:hover {
+    transform: scale(1.1);
+}
+
+
+/* CARTSHOP */
+.cartshop main{
+    margin: 10px 0;
+    height: 700px;
+}
+
+.cartshop .aside_productos{
+    width: 34%;
+    min-height: 1000px;
+    max-height: 1000px;
+
+}
+
+.cartshop .aside_comprar{
+    height: 500px;
+    max-height: 500px;
+
+
+}
+
