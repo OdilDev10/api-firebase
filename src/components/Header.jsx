@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 function Header() {
   const auth = useAuth();
   const { displayName } = auth.user;
+  const carroItems = auth.carroItems
+
 
   return (
     <>
@@ -15,11 +17,11 @@ function Header() {
         <div className="contenedor_header d-flex justify-content-evenly m-4 mi-background">
           <div className="info_usuario mi-background-azul p-1 m-1">
             <span>
-              <Link to={'/cartshop'} className="nav-link"><i className="fas fa-cart-shopping hover-zoom-plus">: 0</i></Link>
+              <Link to={'/cartshop'} className="nav-link"><i className="fas fa-cart-shopping hover-zoom-plus">: {carroItems}</i></Link>
             </span>
             <b>Status: {auth.user ? <span> 
               <i className="fas fa-power-off">On</i>
-            </span> : <span> 
+            </span> : <span>  
               <i className="fas fa-power-off">Off</i>
             </span>}</b>
 
@@ -37,7 +39,7 @@ function Header() {
 
           <div className="info_usuario mi-background-azul p-1 m-1">
             
-            <b>User: {auth.user ? displayName : 'None'} </b>
+            <b><i className="fa-solid fa-user"></i> User: {auth.user ? displayName : 'None'} </b>
 
           </div>
         </div>

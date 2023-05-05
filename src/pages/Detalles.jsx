@@ -6,6 +6,7 @@ import Formulario from "../components/Formulario";
 
 import MenuIzquierda from "../components/MenuIzquierda";
 import { useAuth } from "../context/AuthContext";
+import Disponible from "../components/Disponible";
 
 function Detalles() {
   const auth = useAuth()
@@ -55,12 +56,9 @@ function Detalles() {
               <div className="card-body text-center mi-background-verde">
                 <i className="fas fa-cart-shopping carrito_grande hover-zoom-plus"></i>
                 <h5 className="card-title">{producto.name}</h5>
-                <p className="card-text">{producto.price}</p>
-                {producto.available ? (
-                  <span className="bg-success rounded-pill p-2">Available</span>
-                ) : (
-                  <span className="mb bg-danger rounded-pill p-2">Off</span>
-                )}
+                <p className="card-text">${producto.price}</p>
+                <Disponible item={producto}/>
+              
               </div>
             </div>
 

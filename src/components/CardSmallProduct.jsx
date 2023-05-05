@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Disponible from './Disponible'
 
 function CardSmallProduct({item}) {
   return (
-    <div className="card mb-3" >
+    <div className="card mb-3 " >
   <div className="row g-0">
     <div className="col-md-4">
       <img src={item.picture} className="img-fluid rounded-start" alt={item.name}/>
@@ -13,11 +14,7 @@ function CardSmallProduct({item}) {
         <h5>{item.name}</h5>
         <p className="card-text">Price: ${item.price}</p>
 
-        {item.available ? (
-          <span className="m-1 bg-success rounded-pill p-2">Available</span>
-        ) : (
-          <span className="m-1 bg-danger rounded-pill p-2">Off</span>
-        )}
+          <Disponible item={item}/>
 
         <Link
           to={"/detalles/" + item.id}

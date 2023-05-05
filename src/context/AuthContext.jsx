@@ -23,6 +23,8 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState("");
   const [products, setProducts] = useState([]);
+  const [carroItems, setCarroItems] = useState(0);
+  const [carroProducts, setCarroProducts] = useState([]);
 
 
   useEffect(() => {
@@ -64,7 +66,6 @@ export function AuthProvider({ children }) {
     console.log(response);
   };
 
-
   const peticion = async () => {
     const url =
       "https://flutter-varios-1db01-default-rtdb.firebaseio.com/products.json";
@@ -77,7 +78,7 @@ export function AuthProvider({ children }) {
       return { ...product, id: ids[index] };
     });
     setProducts(productsWithIds);
-    console.log("PIDIENDO PRODUCTOS")
+    console.log("PIDIENDO PRODUCTOS");
   };
 
   useEffect(() => {
@@ -86,12 +87,20 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
-
-
-
   return (
     <authContext.Provider
-      value={{ register, login, loginWithGoogle, logout, user, products }}
+      value={{
+        register,
+        login,
+        loginWithGoogle,
+        logout,
+        user,
+        products,
+        carroItems,
+        setCarroItems,
+        carroProducts,
+        setCarroProducts,
+      }}
     >
       {children}
     </authContext.Provider>
