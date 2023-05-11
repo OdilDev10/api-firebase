@@ -1,27 +1,29 @@
 import React, { useRef } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { login, loginWithGoogle } from "../Redux/slices/UserSlice";
+import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
+import { auth } from "../firebase.config";
+import AuthHook from "../Hook/AuthHook";
 
 function FormularioInicio2() {
-  const auth = useAuth()
-  const {displayName} = auth.user
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loginGoogle } = AuthHook();
+
   const email_input = useRef("");
   const password_input = useRef("");
 
-  const handleSubmit =  (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const respuesta = auth.login( email_input.current.value, password_input.current.value)
+
+    const respuesta = dispatch(
+      login(email_input.current.value, password_input.current.value)
+    );
     console.log("EMAIL: ", respuesta);
-
+    // location.reload();
   };
-
-  const loginGoogle = (event) => {
-    event.preventDefault();
-    let respuesta = auth.loginWithGoogle()
-    console.log("LOGIN GOOGlE", respuesta);
-
-  }
-
-  
 
   return (
     <form className="form p-4 text-center " onSubmit={handleSubmit}>
@@ -50,8 +52,17 @@ function FormularioInicio2() {
       <button className="btn btn-outline-warning w-50" type="submit">
         With Email
       </button>
-      <button className="btn btn-warning w-50 m-1" type="submit" onClick={loginGoogle}>
-      With <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png" alt="" height={15}/>
+      <button
+        className="btn btn-warning w-50 m-1"
+        type="submit"
+        onClick={ loginGoogle}
+      >
+        With{" "}
+        <img
+          src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png"
+          alt=""
+          height={15}
+        />
       </button>
     </form>
   );

@@ -1,52 +1,49 @@
-import { useEffect, useState } from "react";
-
 import "./App.css";
-import { Link } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Formulario from "./components/Formulario";
-import MenuIzquierda from "./components/MenuIzquierda";
-import MenuDerecha from "./components/MenuDerecha";
-import { useAuth } from "./context/AuthContext";
-import CardProduct from "./components/CardProduct";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Detalles from "./pages/Detalles";
+import Inicio from "./pages/Inicio.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import CartShop from "./pages/CartShop.jsx";
+import {Provider, useDispatch, useSelector} from 'react-redux'
+import { store } from "./Redux/store.js";
+import Home from "./pages/Home.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Store from "./pages/Store.jsx";
+import Perfil from "./pages/Perfil";
+import Products from "./pages/Dashboard/products/Products";
+
 
 function App() {
-  // authenticacion
-  const auth = useAuth();
-  const user = auth.user;
-  const products = auth.products
 
-  return (
-    <>
-      <div className="container ">
-        <Header />
+  return ( 
+    <div id="app" className="">
+      <div className="circulos_fondo_1 mi-background-azul"></div>
+      <div className="paralelogramo"></div>
 
-        <main className="main mi-background" id="main">
-          <div
-            className="row justify-content-center p-4 gap-2"
-            id="row_tarjetas"
-          >
-            {products == null ? (
-              <div className="spinner-border text-success" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            ) : (
-              products.map((item) => {
-                return (
-                  <CardProduct item={item} key={item.id}/>
-                );
-              })
-            )}
-          </div>
-        </main>
+      <div className="circulos_fondo_2"></div>
 
-        <MenuIzquierda />
+    <Provider store={store}>
 
-        {user != "" ? <MenuDerecha /> : ""}
-      </div>
+      
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/detalles/:id" element={<Detalles />} />
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/cartshop" element={<CartShop />} />
+        <Route path="/perfil" element={<Perfil />} />
 
-      <Footer />
-    </>
+        {/* Dashboard */}
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/productos_crm" element={<Products />} />
+
+      </Routes>
+    </BrowserRouter>
+    </Provider>
+    </div>
   );
 }
 

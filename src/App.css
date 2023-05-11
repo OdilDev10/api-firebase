@@ -2,7 +2,51 @@
     font-family: monospace;
 }
 
-.info_usuario{
+#app {
+    position: relative;
+}
+
+.circulos_fondo_1 {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    filter: blur(10px);
+    z-index: -2;
+    top: 4px;
+    right: 20%;
+    background-color: #9cffe8;
+
+}
+
+
+.circulos_fondo_2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(10px);
+
+    z-index: -2;
+    height: 200px;
+    width: 200px;
+    top: 300px;
+    left: 5%;
+    background-color: #9cffe8;
+}
+
+.paralelogramo {
+    width: 200px; 
+    filter: blur(10px);
+
+    z-index: -2;
+    position: absolute;
+    top: 80vh;
+    right: 20px;
+    height: 100px; 
+    background: #9cffe8;
+    transform: skew(20deg);
+  }
+
+.info_usuario {
     display: flex;
     flex-direction: column;
 }
@@ -15,7 +59,30 @@ footer {
     height: 50px;
 }
 
-.carrito_grande{
+/* DETALLES */
+.card-detail{
+    position: relative;
+}
+.container_imagenes{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: red;
+    height: auto;
+    width: 100px;
+}
+
+
+/* CARRO */
+
+.border-hover{
+    border: 3px solid red;
+}
+.fa-fire{
+    color: #e9740a;
+}
+
+.carrito_grande {
     font-size: 30px;
 }
 
@@ -28,7 +95,7 @@ footer {
     max-height: 550px;
 }
 
-.card-title{
+.card-title {
     font-size: 18px;
 }
 
@@ -63,6 +130,10 @@ footer {
     background: var(--mi-background);
 }
 
+.contenedor_btn_izquierda span{
+    color: #5eace0;
+}
+
 .contenedor_btn .contenedor_btn_derecha {
     top: 0;
     right: 0;
@@ -93,6 +164,16 @@ footer {
     border: 1px solid rgba(80, 200, 120, 0.73);
 }
 
+.mi-background-rojo {
+/* From https://css.glass */
+background: rgba(227, 82, 82, 0.81);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(13.7px);
+-webkit-backdrop-filter: blur(13.7px);
+border: 1px solid rgba(227, 82, 82, 0.3);
+}
+
 .mi-background-azul {
     background: rgba(134, 238, 222, 0.89);
     border-radius: 16px;
@@ -121,22 +202,45 @@ footer {
 
 
 /* CARTSHOP */
-.cartshop main{
-    margin: 10px 0;
-    height: 700px;
+
+.cartshop {
+    position: relative;
 }
 
-.cartshop .aside_productos{
+.cartshop main {
+    margin: 10px 0;
+    min-height: 700px;
+}
+
+.cartshop .aside_productos {
     width: 34%;
     min-height: 1000px;
     max-height: 1000px;
 
 }
 
-.cartshop .aside_comprar{
+.cartshop .aside_comprar {
     height: 500px;
     max-height: 500px;
-
+    top: 3px;
+    position: sticky;
 
 }
+
+.cardCartShop {}
+
+
+
+/* DASHBOARD */
+
+.card_dashboard{    
+}   
+
+
+.contenedor_dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 

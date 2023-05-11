@@ -1,45 +1,48 @@
 import React from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
-import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-function Header() {
-  const auth = useAuth();
-  const { displayName } = auth.user;
-  const carroItems = auth.carroItems
+function Header() { 
+  const {user} = useSelector(state => state.user)
+  const {statusLogin} = useSelector(state => state.user)
+
+  const {carroItems} = useSelector(state => state.products)
 
 
-  return (
+  return ( 
     <>
       <header className="header text-center">
         <h1 className="title ">Consumo API Firebase</h1>
         <div className="contenedor_header d-flex justify-content-evenly m-4 mi-background">
-          <div className="info_usuario mi-background-azul p-1 m-1">
+          <div className="info_usuario mi-background-azul p-1 m-1 hover-zoom-plus">
             <span>
-              <Link to={'/cartshop'} className="nav-link"><i className="fas fa-cart-shopping hover-zoom-plus">: {carroItems}</i></Link>
+              <Link to={'/cartshop'} className="nav-link"><i className="fas fa-cart-shopping fa-beat hover-zoom-plus">: {carroItems}</i></Link>
             </span>
-            <b>Status: {auth.user ? <span> 
+            <b>Status: {statusLogin  ? <span>  
               <i className="fas fa-power-off">On</i>
             </span> : <span>  
               <i className="fas fa-power-off">Off</i>
-            </span>}</b>
-
+            </span>}
+            </b>
           </div>
 
           <div>
-            <img
+            <img className="hover-zoom "
               src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png"
               alt="Firebase"
             />
-            <img src={reactLogo} alt="REACT" />
-            <img src={viteLogo} alt="VITE" />
-            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap" />
+            <img className="hover-zoom fa-spin" src={reactLogo} alt="REACT" />
+            <img className="hover-zoom" src={viteLogo} alt="VITE" />
+            <img className="hover-zoom" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap" />
           </div>
 
-          <div className="info_usuario mi-background-azul p-1 m-1">
-            
-            <b><i className="fa-solid fa-user"></i> User: {auth.user ? displayName : 'None'} </b>
+          <div className="info_usuario mi-background-azul p-1 m-1 hover-zoom-plus">
+
+          {statusLogin ? <Link to={'/perfil'} className="nav-link hover-zoom-plus"><b><i className="fa-solid fa-user "></i> User: {statusLogin ? user.displayName : 'None'} </b></Link> : <Link to={'/inicio'} className="nav-link hover-zoom-plus"><b><i className="fa-solid fa-user "></i> User: {statusLogin ? user.displayName : 'None'} </b></Link>} 
+          
+
 
           </div>
         </div>

@@ -4,7 +4,7 @@ import Disponible from './Disponible'
 
 function CardSmallProduct({item}) {
   return (
-    <div className="card mb-3 " >
+    <div className="card mb-3 m-1" >
   <div className="row g-0">
     <div className="col-md-4">
       <img src={item.picture} className="img-fluid rounded-start" alt={item.name}/>
@@ -16,18 +16,14 @@ function CardSmallProduct({item}) {
 
           <Disponible item={item}/>
 
-        <Link
+          <Link
           to={"/detalles/" + item.id}
-          className="btn btn-primary w-50 mt-2 "
+          className="btn btn-primary w-100 mt-2"
         >
-          Detalles
+          Detalles{" "}
+          <i className="fa-solid fa-circle-info hover-zoom-plus"></i>
         </Link>
-        <Link
-          to={"/detalles/" + item.id}
-          className="btn btn-success w-50 mt-2 "
-        >
-          Add <i className="fas fa-cart-shopping hover-zoom-plus"></i>
-        </Link>
+        
 
       </div>
     </div>

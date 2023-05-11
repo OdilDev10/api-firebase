@@ -56,9 +56,9 @@ export function AuthProvider({ children }) {
   };
 
   const loginWithGoogle = async () => {
-    const response = new GoogleAuthProvider();
-    console.dir(response);
-    return await signInWithPopup(auth, response);
+    // const response = new GoogleAuthProvider();
+    // console.dir(response);
+    // return await signInWithPopup(auth, response);
   };
 
   const logout = async () => {
@@ -66,26 +66,6 @@ export function AuthProvider({ children }) {
     console.log(response);
   };
 
-  const peticion = async () => {
-    const url =
-      "https://flutter-varios-1db01-default-rtdb.firebaseio.com/products.json";
-    let petcion_get = await fetch(url);
-    let respuesta = await petcion_get.json();
-    let respuesta_array = Object.values(respuesta);
-    let ids = Object.keys(respuesta);
-
-    const productsWithIds = respuesta_array.map((product, index) => {
-      return { ...product, id: ids[index] };
-    });
-    setProducts(productsWithIds);
-    console.log("PIDIENDO PRODUCTOS");
-  };
-
-  useEffect(() => {
-    return () => {
-      peticion();
-    };
-  }, []);
 
   return (
     <authContext.Provider

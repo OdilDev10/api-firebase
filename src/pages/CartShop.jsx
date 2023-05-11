@@ -3,21 +3,46 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuIzquierda from "../components/MenuIzquierda";
 import MenuDerecha from "../components/MenuDerecha";
-import { useAuth } from "../context/AuthContext";
 import CardSmallProduct from "../components/CardSmallProduct";
 import Disponible from "../components/Disponible";
+import { useDispatch, useSelector } from "react-redux";
+import { getPrecioFinal } from "../Redux/slices/ProductsSlice";
+import { Spinner } from "react-bootstrap";
 
 function CartShop() {
-  const auth = useAuth();
-  const user = auth.user;
-  const products = auth.products;
-  const carroProducts = auth.carroProducts;
+  const { selectProducts } = useSelector((state) => state.products);
+  const { precioFinal } = useSelector((state) => state.products);
 
-  const [precioFinal, setPrecioFinal] = useState(0)
+  const { products } = useSelector((state) => state.products);
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
+  const getPrecioFinalLocal = () => {
+    let precioGeneral = 0;
+    for (let i = 0; i < selectProducts.length; i++) {
+      let element = selectProducts[i];
+      let cantidad = element.cantidad;
+      let precio = parseFloat(element.element.price);
 
-  console.log(carroProducts)
- 
+      let p = cantidad * precio;
+      precioGeneral += p;
+    }
+    dispatch(getPrecioFinal(precioGeneral.toFixed(2)));
+    console.log(precioFinal, "precioFinal");
+  };
+
+  useEffect(() => {
+    getPrecioFinalLocal();
+  }, [selectProducts]);
+
+  const mapeo = () => {
+    {
+      products.slice(0, 5).map((item) => {
+        return <CardSmallProduct item={item} key={item.id} />;
+      });
+    }
+  };
+
   return (
     <div>
       <div className="container">
@@ -26,61 +51,65 @@ function CartShop() {
         <div className="d-flex gap-2 cartshop">
           <aside className="aside flex-shrink-1 mi-background aside_productos text-center">
             <h3>Recomendaciones</h3>
-            {products.slice(0, 5).map((item) => {
-              return <CardSmallProduct item={item} key={item.id} />;
-            })}
+
+            {products.length > -1 ? (
+              products.slice(0, 5).map((item) => {
+                return <CardSmallProduct item={item} key={item.id} />;
+              })
+            ) : (
+              <Spinner />
+            )}
           </aside>
           <main className="main flex-grow-1 mi-background w-75">
-            <h3>Your Products</h3>
+            <h3 className="text-center">Your Products</h3>
             <div>
-
-              {carroProducts.element}
-            
-              {/* {Object.values(carroProducts.element).map((item, index) => {
-                  console.log(item);
-                
-                return (
-                  <div className="card mb-3" key={index}>
-                    <div className="row g-0">
-                      <div className="col-md-4">
-                        <img
-                          src={item.picture}
-                          className="img-fluid rounded-start"
-                          alt={item.name}
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <div className="card-body">
-                          <h5 className="card-title">{item.name} ${item.price}</h5>
-                          <p className="card-text">
-                            
-                            This is a wider card with supporting text below as a
-                            natural lead-in to additional content. This content
-                            is a little bit longer.
-                          </p>
-                          <p className="card-text">
-                            <small className="text-body-secondary">
-                              <Disponible item={item}/>
-                              
-                            </small>
-                          </p>
+              {selectProducts.length <= 0 ? (
+                <div className="text-center">
+                  <span className="fw-light">No hay productos en el carro...</span>
+                </div>
+              ) : (
+                selectProducts.map((item, index) => {
+                  return (
+                    <div className="card mb-3 cardCartShop m-1" key={index}>
+                      <div className="row g-0">
+                        <div className="col-md-4">
+                          <img
+                            className="card-img-top"
+                            src={item.element.picture}
+                            alt={item.element.name}
+                          />
+                        </div>
+                        <div className="col-md-8">
+                          <div className="card-body mi-background-azul h-100">
+                            <h5 className="card-title">
+                              Product: {item.element.name}
+                            </h5>
+                            <p className="card-text">
+                              Price: ${item.element.price}
+                            </p>
+                            <p className="card-text">
+                              Cantidad: {item.cantidad}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })} */}
+                  );
+                })
+              )}
             </div>
           </main>
-          <aside className="aside flex-shrink-1 mi-background w-25 aside_comprar text-center">
+          <aside className="aside flex-shrink-1 mi-background w-25 aside_comprar text-center d-flex flex-column justify-content-between p-1">
             <h3>Pago</h3>
-            <h4>Total: $0.00</h4>
-            <button className="btn btn-success w-100 ">Comprar</button>
+            <div className="btn_compra mb-2">
+              <h4>Total: ${precioFinal} </h4>
+              <button className="btn btn-success w-100 ">Comprar</button>
+            </div>
           </aside>
         </div>
 
         <MenuIzquierda />
-        {user != "" ? <MenuDerecha /> : ""}
+        {/* {user != "" ? <MenuDerecha /> : ""} */}
       </div>
       <Footer />
     </div>

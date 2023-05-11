@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
-import { useAuth } from "../context/AuthContext";
+import { register } from "../Redux/slices/UserSlice";
+import { useDispatch } from "react-redux";
 
 function FormularioInicio() {
-  const auth = useAuth()
   const email_input = useRef("");
   const password_input = useRef("");
 
+  const dispatch = useDispatch((state) => state.user)
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = email_input.current.value;
     const password = password_input.current.value;
 
-    let response = auth.register(email, password)
+    let response = dispatch(register(email, password))
     console.log(response);
   };
 

@@ -1,0 +1,54 @@
+.card_perfil{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+
+
+
+.card_perfil .card_informaciones{
+    margin: 3px;
+    display: flex;
+    height: 80%;
+    border-radius: 7px;
+}
+
+.card_perfil .card_img{
+    display: flex;
+}
+
+.card_perfil .card_img img{
+    border-radius: 50%;
+    width: 80%;
+    margin: auto;
+}
+
+.card_info p{
+    font-size: 14px;
+}
+
+.card_perfil .card_informaciones div{
+    margin: 3px;
+
+}
+
+.card_perfil .card_informaciones div:nth-child(1){
+    width: 30%;
+
+}
+
+
+.card_perfil .card_informaciones div:nth-child(2){
+    width: 70%;
+
+}
+
+
+
+.card_perfil .card_actions{
+    margin: 3px;
+    height: 20%;
+
+    
+}

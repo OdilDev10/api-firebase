@@ -1,14 +1,15 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+// import { useDispatch, useSelector } from "react-redux";
 
 function Disponible({ item }) {
-  const auth = useAuth();
+  // const {user} = useSelector(state => state.user)
+  // const dispatch = useDispatch()  
 
   return (
     <div>
       {item.stock > 0 ? (
-        <span className="bg-success rounded-pill p-2">
-          Available {item.stock}
+        <span className="mi-background-verde rounded-pill p-2">
+          On {item.stock}
         </span>
       ) : (
         <span className="mb bg-danger rounded-pill p-2">Off 0</span>
@@ -16,5 +17,5 @@ function Disponible({ item }) {
     </div>
   );
 }
-
+ 
 export default Disponible;

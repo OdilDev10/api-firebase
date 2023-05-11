@@ -5,15 +5,11 @@ import Footer from "../components/Footer";
 import Formulario from "../components/Formulario";
 
 import MenuIzquierda from "../components/MenuIzquierda";
-import { useAuth } from "../context/AuthContext";
 import Disponible from "../components/Disponible";
 
 function Detalles() {
-  const auth = useAuth()
-  const user = auth.user
-
   const { id } = useParams("id");
-  const [producto, setProducto] = useState({})
+  const [producto, setProducto] = useState({});
 
   const peticion = async (id) => {
     try {
@@ -22,8 +18,8 @@ function Detalles() {
       let petcion_get = await fetch(url);
       let respuesta = await petcion_get.json();
 
-      respuesta['id'] = id
-      setProducto(respuesta)
+      respuesta["id"] = id;
+      setProducto(respuesta);
     } catch (error) {
       console.error(error);
     }
@@ -37,9 +33,8 @@ function Detalles() {
 
   return (
     <div>
-
       <div className="container justify-content-center ">
-      <Header />
+        <Header />
 
         {producto == null ? (
           <div className="spinner-border text-success" role="status">
@@ -50,27 +45,34 @@ function Detalles() {
             <div className="card card-detail mi-background">
               <img
                 src={producto.picture}
-                className="card-img-top hover-zoom"
+                className="card-img-top "
                 alt={producto.name}
               />
+              <div className="container_imagenes">
+                <img src={producto.picture} height={50} alt="" />
+                <img src={producto.picture} height={50} alt="" />
+                <img src={producto.picture} height={50} alt="" />
+                <img src={producto.picture} height={50} alt="" />
+                <img src={producto.picture} height={50} alt="" />
+              </div>
               <div className="card-body text-center mi-background-verde">
                 <i className="fas fa-cart-shopping carrito_grande hover-zoom-plus"></i>
                 <h5 className="card-title">{producto.name}</h5>
-                <p className="card-text">${producto.price}</p>
-                <Disponible item={producto}/>
-              
+                <p className="card-text">Price: ${producto.price}</p>
+                <p className="card-text">Category: {producto.category}</p>
+
+                <Disponible item={producto} />
               </div>
             </div>
 
             <div className="card mt-2 mb-2 mi-background-verde">
-
-              {user != '' ? <Formulario producto={producto} /> : ""}
-
+              <Formulario producto={producto} />
+              {/* {user != '' ? <Formulario producto={producto} /> : ""} */}
             </div>
           </>
         )}
 
-        <MenuIzquierda/>
+        <MenuIzquierda />
       </div>
 
       <Footer />
