@@ -17,13 +17,13 @@ function Store() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await peticionProducto();
-  //     dispatch(getAll(data));
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await peticionProducto();
+      dispatch(getAll(data));
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

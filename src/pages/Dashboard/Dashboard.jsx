@@ -28,7 +28,7 @@ function Dashboard() {
   const calcularTotalVenta = () => {
     let precios = products.map((item) => parseFloat(item.price));
     let operacion = precios.reduce((total, cantidad2) => total + cantidad2, 0);  
-    dispatch(getTotalPrice(operacion));
+    dispatch(getTotalPrice(operacion.toFixed(2)));
   
     return operacion;
   };
@@ -36,7 +36,8 @@ function Dashboard() {
   const calcularTotalCompra = () => {
     let precios = products.map((item) => parseFloat(item.ibuy));
     let operacion = precios.reduce((total, cantidad2) => total + cantidad2, 0);
-    dispatch(getTotalBuy(operacion));
+    dispatch(getTotalBuy(operacion.toFixed(2)));
+
  
     return operacion;
   };

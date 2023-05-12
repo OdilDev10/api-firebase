@@ -12,6 +12,12 @@ export const productSlice = createSlice({
             state.carroItems = state.carroItems + payload.payload.cantidad
             state.selectProducts.push(payload.payload)
         },
+        compra: (state, payload) => {
+            state.carroItems = 0
+            state.selectProducts = []
+            state.precioFinal = 0
+
+        },
         getPrecioFinal: (state, payload) => {
             state.precioFinal = parseFloat(payload.payload)
         },
@@ -97,4 +103,4 @@ export const productSlice = createSlice({
 })
 
 
-export const { getAll, itemsCart, getPrecioFinal, updateItemsCart, deleteItemsCart, getAllCategories, getTotalPrice, getTotalBuy } = productSlice.actions
+export const { getAll, itemsCart, getPrecioFinal, updateItemsCart, deleteItemsCart, getAllCategories, getTotalPrice, getTotalBuy, compra } = productSlice.actions

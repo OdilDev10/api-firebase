@@ -16,13 +16,6 @@ function Home() {
   const [content, setContent] = useState(0);
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await peticionProducto();
-      dispatch(getAll(data));
-    };
-    fetchData();
-  }, []);
 
 
   return (
@@ -130,7 +123,7 @@ const CardTech = ({ selected }) => {
           <h4>My Experiencie</h4>
           {element.experiencie}
         </div>
-        <button className="btn btn-primary ">Documentacion</button>
+        <a href={element.documentacion} target="_blank" className="btn btn-primary ">Documentacion</a>
       </div>
     </div>
   );

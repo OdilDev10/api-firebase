@@ -6,7 +6,7 @@ import MenuDerecha from "../components/MenuDerecha";
 import CardSmallProduct from "../components/CardSmallProduct";
 import Disponible from "../components/Disponible";
 import { useDispatch, useSelector } from "react-redux";
-import { getPrecioFinal } from "../Redux/slices/ProductsSlice";
+import { compra, getPrecioFinal } from "../Redux/slices/ProductsSlice";
 import { Spinner } from "react-bootstrap";
 
 function CartShop() {
@@ -42,6 +42,12 @@ function CartShop() {
       });
     }
   };
+
+  const comprarLocal = () => {
+    alert('Gracias Por su compra')
+    dispatch(compra())
+
+  }
 
   return (
     <div>
@@ -103,7 +109,7 @@ function CartShop() {
             <h3>Pago</h3>
             <div className="btn_compra mb-2">
               <h4>Total: ${precioFinal} </h4>
-              <button className="btn btn-success w-100 ">Comprar</button>
+              <button className="btn btn-success w-100 " onClick={comprarLocal}>Comprar</button>
             </div>
           </aside>
         </div>

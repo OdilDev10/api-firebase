@@ -64,12 +64,22 @@ footer {
     position: relative;
 }
 .container_imagenes{
+
     position: absolute;
     right: 0;
     top: 0;
-    background-color: red;
     height: auto;
     width: 100px;
+}
+
+.container_imagenes img{
+    margin-top: 3px;
+    min-height: 80px;
+}
+
+.container_imagenes img:hover{
+    cursor: pointer;
+    
 }
 
 
