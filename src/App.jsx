@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Store from "./pages/Store.jsx";
 import Perfil from "./pages/Perfil";
 import Products from "./pages/Dashboard/products/Products";
+import { Blog } from "./pages/Blog/Blog";
 
 
 function App() {
@@ -20,7 +21,6 @@ function App() {
     <div id="app" className="">
       <div className="circulos_fondo_1 mi-background-azul"></div>
       <div className="paralelogramo"></div>
-
       <div className="circulos_fondo_2"></div>
 
     <Provider store={store}>
@@ -39,6 +39,10 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/productos_crm" element={<Products />} />
+
+        {/* Blog */}
+        <Route path="/blog" element={<Blog />} />
+
 
       </Routes>
     </BrowserRouter>
